@@ -1,3 +1,4 @@
+import { Mensagem } from "src/mensagem/mensagem.entity";
 import { Pedido } from "src/pedido/pedido.entity";
 import { Column, Entity, OneToMany, PrimaryGeneratedColumn } from "typeorm";
 
@@ -14,4 +15,7 @@ export class Cliente {
 
     @OneToMany(() => Pedido, pedido => pedido.cliente)
     pedidos: Pedido[];
+
+    @OneToMany(() => Mensagem, mensagem => mensagem.cliente)
+    mensagens: Mensagem[];
 }

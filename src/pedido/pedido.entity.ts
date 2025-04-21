@@ -1,5 +1,6 @@
 import { Entity, PrimaryGeneratedColumn, Column, ManyToOne, OneToMany, CreateDateColumn } from 'typeorm';
 import { Cliente } from 'src/clientes/clientes.entity'; 
+import { PedidoItem } from 'src/pedido-item/pedidoItem.entity';
 
 @Entity('pedidos')
 export class Pedido {
@@ -27,4 +28,7 @@ export class Pedido {
 
   @Column({ default: false })
   combo: boolean;
+
+  @OneToMany(() => PedidoItem, pedidoItem => pedidoItem.pedido)
+  itens: PedidoItem[];
 }

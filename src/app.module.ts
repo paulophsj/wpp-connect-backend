@@ -3,6 +3,10 @@ import { ConfigModule } from '@nestjs/config';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { ClienteModule } from './clientes/clientes.module';
 import { PedidoModule } from './pedido/pedido.module';
+import { CardapioModule } from './cardapio/cardapio.module';
+import { MensagemModule } from './mensagem/mensagem.module';
+import { PedidoItemModule } from './pedido-item/pedidoItem.module';
+import { RegiaoEntregaModule } from './regiao-entrega/regiaoEntrega.module';
 
 @Module({
   imports: [
@@ -18,8 +22,12 @@ import { PedidoModule } from './pedido/pedido.module';
       entities: [__dirname + '/**/*.entity{.ts}'],
       autoLoadEntities: true,
     }),
+    CardapioModule,
     ClienteModule,
+    MensagemModule,
     PedidoModule,
+    PedidoItemModule,
+    RegiaoEntregaModule
   ],
 })
 export class AppModule {}
