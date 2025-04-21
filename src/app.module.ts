@@ -1,9 +1,8 @@
-
 import { Module } from '@nestjs/common';
 import { ConfigModule } from '@nestjs/config';
 import { TypeOrmModule } from '@nestjs/typeorm';
-import { Mensagem } from './entities/mensagem.entity';
-import { MessageModule } from './modules/mensagem.module';
+import { ClienteModule } from './clientes/clientes.module';
+import { PedidoModule } from './pedido/pedido.module';
 
 @Module({
   imports: [
@@ -15,11 +14,12 @@ import { MessageModule } from './modules/mensagem.module';
       username: process.env.DB_USER as any,
       password: process.env.DB_PASSWORD as any,
       database: process.env.DB_TYPE as any,
-      entities: [Mensagem],
       synchronize: true,
+      entities: [__dirname + '/**/*.entity{.ts}'],
       autoLoadEntities: true,
     }),
-    MessageModule,
+    ClienteModule,
+    PedidoModule,
   ],
 })
 export class AppModule {}
