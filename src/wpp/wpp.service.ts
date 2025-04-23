@@ -1,18 +1,34 @@
-import { Injectable, OnModuleInit } from "@nestjs/common";
-import { create } from "@wppconnect-team/wppconnect";
-
+import { Injectable, OnModuleInit } from '@nestjs/common';
+import { create, Whatsapp } from '@wppconnect-team/wppconnect';
 
 @Injectable()
 export class WppService implements OnModuleInit {
-    async onModuleInit() {
-        const client = await create({
-            session: 'sessionName',
-            catchQR: (base64Qrimg, asciiQR, attempts, urlCode) => {
-              console.log('Número de tentativas para ler o console qrcode: ', attempts);
-              console.log('Código de terminal: ', asciiQR);
-            }
-        });
-        client.onMessage(async (message) => {
+  async onModuleInit() {
+    const client = await this.initializeClient();
+    this.clientMessage(client);
+  }
 
-        })
-}}
+  //Inicializa o WhatsApp
+
+  private async initializeClient() {
+    const client = await create({
+      session: 'sessionName',
+      catchQR: (base64Qrimg, asciiQR, attempts, urlCode) => {
+        console.log(
+          'Número de tentativas para ler o console qrcode: ',
+          attempts,
+        );
+        console.log('Código de terminal: ', asciiQR);
+      },
+    });
+    return client;
+  }
+
+  //Inicia as mensagens que o usuário recebe
+
+  private async clientMessage(client: Whatsapp) {
+    client.onMessage(async (message) => {
+      
+    });
+  }
+}
