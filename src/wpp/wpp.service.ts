@@ -1,8 +1,12 @@
 import { Injectable, OnModuleInit } from '@nestjs/common';
 import { create, Whatsapp } from '@wppconnect-team/wppconnect';
+import { fluxoCliente } from 'src/fluxoCliente/fluxoCliente';
 
 @Injectable()
 export class WppService implements OnModuleInit {
+  constructor(
+    private fluxoCliente: fluxoCliente
+  ){}
   async onModuleInit() {
     const client = await this.initializeClient();
     this.clientMessage(client);
@@ -28,7 +32,9 @@ export class WppService implements OnModuleInit {
 
   private async clientMessage(client: Whatsapp) {
     client.onMessage(async (message) => {
-      
+      if(!message.isGroupMsg){
+        this.fluxoCliente.startChat(message)
+      }
     });
   }
 }

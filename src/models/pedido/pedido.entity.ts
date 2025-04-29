@@ -1,6 +1,6 @@
 import { Entity, Column, ManyToOne, OneToMany, CreateDateColumn } from 'typeorm';
-import { Cliente } from 'src/clientes/clientes.entity'; 
-import { PedidoItem } from 'src/pedido-item/pedidoItem.entity';
+import { Cliente } from 'src/models/clientes/clientes.entity'; 
+import { PedidoItem } from 'src/models/pedido-item/pedidoItem.entity';
 import { EntidadeAuditavel } from 'src/utils/EntidadeAuditavel';
 
 @Entity('pedidos')

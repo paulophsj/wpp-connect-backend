@@ -1,4 +1,4 @@
-import { Cliente } from "src/clientes/clientes.entity";
+import { Cliente } from "src/models/clientes/clientes.entity";
 import { EntidadeAuditavel } from "src/utils/EntidadeAuditavel";
 import { Column, CreateDateColumn, Entity, ManyToOne } from "typeorm";
 

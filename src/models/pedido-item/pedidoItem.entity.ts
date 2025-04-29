@@ -1,5 +1,5 @@
-import { Cardapio } from "src/cardapio/cardapio.entity";
-import { Pedido } from "src/pedido/pedido.entity";
+import { Cardapio } from "src/models/cardapio/cardapio.entity";
+import { Pedido } from "src/models/pedido/pedido.entity";
 import { EntidadeAuditavel } from "src/utils/EntidadeAuditavel";
 import { Column, Entity, ManyToMany, ManyToOne, PrimaryGeneratedColumn } from "typeorm";
 

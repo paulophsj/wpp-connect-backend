@@ -1,13 +1,13 @@
 import { Module } from '@nestjs/common';
 import { ConfigModule } from '@nestjs/config';
 import { TypeOrmModule } from '@nestjs/typeorm';
-import { ClienteModule } from './clientes/clientes.module';
-import { PedidoModule } from './pedido/pedido.module';
-import { CardapioModule } from './cardapio/cardapio.module';
-import { MensagemModule } from './mensagem/mensagem.module';
-import { PedidoItemModule } from './pedido-item/pedidoItem.module';
-import { RegiaoEntregaModule } from './regiao-entrega/regiaoEntrega.module';
-import { ControleFluxoModule } from './controle-fluxo/controleFluxo.module';
+import { ClienteModule } from './models/clientes/clientes.module';
+import { PedidoModule } from './models/pedido/pedido.module';
+import { CardapioModule } from './models/cardapio/cardapio.module';
+import { MensagemModule } from './models/mensagem/mensagem.module';
+import { PedidoItemModule } from './models/pedido-item/pedidoItem.module';
+import { RegiaoEntregaModule } from './models/regiao-entrega/regiaoEntrega.module';
+import { ControleFluxoModule } from './models/controle-fluxo/controleFluxo.module';
 import { WppModule } from './wpp/wpp.module';
 
 @Module({

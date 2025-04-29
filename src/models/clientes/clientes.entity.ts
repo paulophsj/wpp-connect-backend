@@ -1,6 +1,6 @@
-import { ControleFluxo } from "src/controle-fluxo/controleFluxo.entity";
-import { Mensagem } from "src/mensagem/mensagem.entity";
-import { Pedido } from "src/pedido/pedido.entity";
+import { ControleFluxo } from "src/models/controle-fluxo/controleFluxo.entity";
+import { Mensagem } from "src/models/mensagem/mensagem.entity";
+import { Pedido } from "src/models/pedido/pedido.entity";
 import { EntidadeAuditavel } from "src/utils/EntidadeAuditavel";
 import { Column, Entity, ManyToOne, OneToMany } from "typeorm";
 

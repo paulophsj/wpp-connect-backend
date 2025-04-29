@@ -2,7 +2,7 @@ import { Injectable, NotFoundException } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { ControleFluxo } from './controleFluxo.entity';
 import { Repository } from 'typeorm';
-import { Cliente } from 'src/clientes/clientes.entity';
+import { Cliente } from 'src/models/clientes/clientes.entity';
 
 @Injectable()
 export class ControleFluxoService {

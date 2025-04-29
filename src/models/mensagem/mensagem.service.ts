@@ -2,8 +2,8 @@ import { Injectable, NotFoundException } from "@nestjs/common";
 import { InjectRepository } from "@nestjs/typeorm";
 import { Repository } from "typeorm";
 import { Mensagem } from "./mensagem.entity";
-import { Cliente } from "src/clientes/clientes.entity";
-import { ClientesService } from "src/clientes/clientes.service";
+import { Cliente } from "src/models/clientes/clientes.entity";
+import { ClientesService } from "src/models/clientes/clientes.service";
 
 @Injectable()
 export class MensagemService {
@@ -24,18 +24,5 @@ export class MensagemService {
             mensagem
         })
         return await this.mensagemRepository.save(newMessage)
-    }
-    async update(clienteId: number, mensagem: string): Promise<Mensagem>{
-        const buscarMensagem = await this.mensagemRepository.findOne({
-            where: {
-                cliente: {id: clienteId}
-            },
-            relations: ['cliente']
-        })
-        if(!buscarMensagem){
-            throw new NotFoundException('Cliente não localizado nas mensagens')
-        }
-        buscarMensagem.mensagem = mensagem
-        return await this.mensagemRepository.save(buscarMensagem)
     }
 }

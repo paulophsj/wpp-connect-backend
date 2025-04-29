@@ -2,7 +2,7 @@ import { Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { ControleFluxo } from './controleFluxo.entity';
 import { ControleFluxoService } from './controleFluxo.service';
-import { Cliente } from 'src/clientes/clientes.entity';
+import { Cliente } from 'src/models/clientes/clientes.entity';
 
 @Module({
   imports: [TypeOrmModule.forFeature([ControleFluxo, Cliente])],
