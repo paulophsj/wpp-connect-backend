@@ -1,12 +1,10 @@
-import { Entity, PrimaryGeneratedColumn, Column, ManyToOne, OneToMany, CreateDateColumn } from 'typeorm';
+import { Entity, Column, ManyToOne, OneToMany, CreateDateColumn } from 'typeorm';
 import { Cliente } from 'src/clientes/clientes.entity'; 
 import { PedidoItem } from 'src/pedido-item/pedidoItem.entity';
+import { EntidadeAuditavel } from 'src/utils/EntidadeAuditavel';
 
 @Entity('pedidos')
-export class Pedido {
-  @PrimaryGeneratedColumn()
-  id: number;
-
+export class Pedido extends EntidadeAuditavel{
   @ManyToOne(() => Cliente, cliente => cliente.pedidos)
   cliente: Cliente;
 

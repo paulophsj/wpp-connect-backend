@@ -1,10 +1,8 @@
-import { Column, Entity, PrimaryGeneratedColumn } from "typeorm";
+import { EntidadeAuditavel } from "src/utils/EntidadeAuditavel";
+import { Column, Entity } from "typeorm";
 
 @Entity("cardapio")
-export class Cardapio {
-    @PrimaryGeneratedColumn()
-    id: number;
-
+export class Cardapio extends EntidadeAuditavel{
     @Column({length: 100})
     nome: string;
 

@@ -1,17 +1,19 @@
+import { ControleFluxo } from "src/controle-fluxo/controleFluxo.entity";
 import { Mensagem } from "src/mensagem/mensagem.entity";
 import { Pedido } from "src/pedido/pedido.entity";
-import { Column, Entity, OneToMany, PrimaryGeneratedColumn } from "typeorm";
+import { EntidadeAuditavel } from "src/utils/EntidadeAuditavel";
+import { Column, Entity, ManyToOne, OneToMany } from "typeorm";
 
 @Entity('clientes')
-export class Cliente {
-    @PrimaryGeneratedColumn()
-    id: number;
-
+export class Cliente extends EntidadeAuditavel{
     @Column()
     nome: string;
 
     @Column({nullable: true})
     telefone: string;
+
+    @OneToMany(() => ControleFluxo, controlefluxo => controlefluxo.cliente)
+    fluxo: ControleFluxo[];
 
     @OneToMany(() => Pedido, pedido => pedido.cliente)
     pedidos: Pedido[];

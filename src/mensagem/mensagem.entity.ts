@@ -1,18 +1,16 @@
 import { Cliente } from "src/clientes/clientes.entity";
-import { Column, CreateDateColumn, Entity, ManyToOne, PrimaryGeneratedColumn } from "typeorm";
+import { EntidadeAuditavel } from "src/utils/EntidadeAuditavel";
+import { Column, CreateDateColumn, Entity, ManyToOne } from "typeorm";
 
 @Entity("mensagem")
-export class Mensagem{
-    @PrimaryGeneratedColumn()
-    id: number;
-
+export class Mensagem extends EntidadeAuditavel{
     @ManyToOne(() => Cliente, cliente => cliente.mensagens)
     cliente: Cliente;
 
     @Column('text')
     mensagem: string;
 
-    @Column('text')
+    @Column('text',{nullable: true})
     resposta: string;
 
     @CreateDateColumn()

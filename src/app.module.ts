@@ -7,6 +7,8 @@ import { CardapioModule } from './cardapio/cardapio.module';
 import { MensagemModule } from './mensagem/mensagem.module';
 import { PedidoItemModule } from './pedido-item/pedidoItem.module';
 import { RegiaoEntregaModule } from './regiao-entrega/regiaoEntrega.module';
+import { ControleFluxoModule } from './controle-fluxo/controleFluxo.module';
+import { WppModule } from './wpp/wpp.module';
 
 @Module({
   imports: [
@@ -27,7 +29,9 @@ import { RegiaoEntregaModule } from './regiao-entrega/regiaoEntrega.module';
     MensagemModule,
     PedidoModule,
     PedidoItemModule,
-    RegiaoEntregaModule
+    RegiaoEntregaModule,
+    ControleFluxoModule,
+    WppModule
   ],
 })
 export class AppModule {}

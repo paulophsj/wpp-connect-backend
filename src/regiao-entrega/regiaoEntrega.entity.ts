@@ -1,10 +1,8 @@
-import { Column, Entity, PrimaryGeneratedColumn } from "typeorm";
+import { EntidadeAuditavel } from "src/utils/EntidadeAuditavel";
+import { Column, Entity } from "typeorm";
 
 @Entity("regiao_entrega")
-export class RegiaoEntrega {
-  @PrimaryGeneratedColumn()
-  id: number;
-
+export class RegiaoEntrega extends EntidadeAuditavel{
   @Column()
   nome: string;
 
