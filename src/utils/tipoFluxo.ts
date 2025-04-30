@@ -1,7 +1,6 @@
 export enum tipoFluxo {
-    Inicio = "Inicio",
-    Cardapio = "Cardapio",
-    Pedido = "Pedido",
-    FinalizarPedido = "FinalizarPedido"
+    INICIO = "Inicio",
+    CARDAPIO = "Cardapio",
+    PEDIDO = "Pedido",
+    FINALiZARPEDIDO = "FinalizarPedido"
 }
-//"Inicio", "Cardapio", "Pedido", "FinalizarPedido"

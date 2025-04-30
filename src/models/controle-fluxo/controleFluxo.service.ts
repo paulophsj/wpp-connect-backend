@@ -13,24 +13,30 @@ export class ControleFluxoService {
         @InjectRepository(Cliente)
         private clienteRepository: Repository<Cliente>,
     ) { }
-
-    async save(clienteId: number, tipoFluxo: string): Promise<ControleFluxo> {
-        const cliente = await this.clienteRepository.findOne({
-            where: { id: clienteId },
-        });
-        if (!cliente) {
-            throw new NotFoundException('Cliente não encontrado.');
+    async getFluxo(telefone: string): Promise<ControleFluxo | null>{
+        const hasControle = await this.controleFluxoRepository.findOne({where: {cliente: {telefone: telefone}}})
+        if(!hasControle){
+            return null
         }
-        const createFluxo = this.controleFluxoRepository.create({
-            cliente,
-            tipoFluxo,
-        });
-        return await this.controleFluxoRepository.save(createFluxo);
+        return hasControle
     }
-    async update(clienteId: number, novoTipoFluxo: string,): Promise<ControleFluxo | null> {
+    async save(telefone: string, tipoFluxo: string): Promise<ControleFluxo | null> {
+        const cliente = await this.clienteRepository.findOne({
+            where: { telefone: telefone },
+        });
+        if(!cliente){
+            return null
+        }
+        const novoFluxo = this.controleFluxoRepository.create({
+            cliente,
+            tipoFluxo
+        })
+        return await this.controleFluxoRepository.save(novoFluxo)
+    }
+    async update(telefone: string, novoTipoFluxo: string,): Promise<ControleFluxo | null> {
         const fluxo = await this.controleFluxoRepository.findOne({
             where: {
-                cliente: { id: clienteId },
+                cliente: { telefone: telefone },
             },
             relations: ['cliente'],
         });
@@ -38,6 +44,6 @@ export class ControleFluxoService {
             return null
         }
         fluxo.tipoFluxo = novoTipoFluxo;
-        return this.controleFluxoRepository.save(fluxo);
+        return await this.controleFluxoRepository.save(fluxo);
     }
 }

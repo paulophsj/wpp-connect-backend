@@ -8,11 +8,12 @@ import { ControleFluxoService } from 'src/models/controle-fluxo/controleFluxo.se
 import { MensagemService } from 'src/models/mensagem/mensagem.service';
 import { Mensagem } from 'src/models/mensagem/mensagem.entity';
 import { fluxoCliente } from 'src/fluxoCliente/fluxoCliente';
+import { clienteStatusService } from 'src/fluxoCliente/clienteStatusService';
 
 @Module({
   imports: [TypeOrmModule.forFeature([Cliente, ControleFluxo, Mensagem])],
   providers: [
-    ControleFluxoService,ClientesService, MensagemService, fluxoCliente,
+    ControleFluxoService,ClientesService, MensagemService, fluxoCliente, clienteStatusService,
     WppService
   ],
   controllers: [],
