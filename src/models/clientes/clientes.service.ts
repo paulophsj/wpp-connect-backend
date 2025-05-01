@@ -12,20 +12,20 @@ export class ClientesService {
   constructor(
     @InjectRepository(Cliente)
     private clientesRepository: Repository<Cliente>,
-    private controleFluxoService: ControleFluxoService
   ) { }
 
-  async checkAndCreateClient(cliente: Message): Promise<Cliente | ControleFluxo | null> {
-    const hasClient = await this.clientesRepository.findOne({ where: { telefone: cliente.from } })
-    if (!hasClient) {
-      const newCliente: Partial<Cliente> = this.clientesRepository.create({
-        nome: cliente.sender.pushname,
-        telefone: cliente.from
-      })
-      const novoCliente = await this.clientesRepository.save(newCliente)
-      await this.controleFluxoService.save(cliente.from, tipoFluxo.INICIO) //Cria um fluxo após o usuário se cadastrar
-      return novoCliente
+  async findOne(cliente: Message): Promise<Cliente> {
+    const hasCliente = await this.clientesRepository.findOne({where: {telefone: cliente.from}})
+    if(!hasCliente){
+      return this.save(cliente)
     }
-    return null
+    return hasCliente
+  }
+  async save(cliente: Message): Promise<Cliente> {
+    const newCliente: Partial<Cliente> = this.clientesRepository.create({
+      nome: cliente.sender.pushname,
+      telefone: cliente.from
+    })
+    return await this.clientesRepository.save(newCliente)
   }
 }

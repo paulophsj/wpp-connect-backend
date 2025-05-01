@@ -2,7 +2,6 @@ import { Injectable } from "@nestjs/common";
 import { Message } from "@wppconnect-team/wppconnect";
 import { clienteStatusService } from "./clienteStatusService";
 import { ClientesService } from "src/models/clientes/clientes.service";
-import { tipoFluxo } from "src/utils/tipoFluxo";
 
 @Injectable()
 export class fluxoCliente {
@@ -12,6 +11,7 @@ export class fluxoCliente {
     ){}
 
     async startChat(cliente: Message){
-
+        const statusCliente = await this.clienteStatusService.getStatusCliente(cliente)
+        console.log(statusCliente)
     }
 }

@@ -1,4 +1,5 @@
 import { Injectable } from "@nestjs/common";
+import { Message } from "@wppconnect-team/wppconnect";
 import { tipoStatus } from "src/interfaces/tipoStatus";
 import { tipoStatusCliente } from "src/interfaces/tipoStatusCliente";
 import { ControleFluxoService } from "src/models/controle-fluxo/controleFluxo.service";
@@ -12,16 +13,16 @@ export class clienteStatusService {
         private controleFluxoService: ControleFluxoService
     ){}
 
-    async getStatusCliente(telefone:string): Promise<tipoStatus>{
-        const hasClient = this.cliente[telefone]
+    async getStatusCliente(cliente: Message): Promise<tipoStatus>{
+        const hasClient = this.cliente[cliente.from]
         if(!hasClient){
-            const getFluxo = await this.controleFluxoService.getFluxo(telefone)
-            this.cliente[telefone] = {tipoStatus: tipoFluxo.INICIO}
+            const getFluxo = await this.controleFluxoService.getFluxo(cliente)
+            return this.cliente[cliente.from] = {tipoStatus: getFluxo.tipoFluxo}
         }
         return hasClient
     }
-    async setStatusCliente(telefone:string, status: tipoFluxo): Promise<tipoStatus>{
-        await this.controleFluxoService.update(telefone, status)
-        return this.cliente[telefone] = {tipoStatus: status}
+    async setStatusCliente(cliente: Message, status: tipoFluxo): Promise<tipoStatus>{
+        await this.controleFluxoService.update(cliente, status)
+        return this.cliente[cliente.from] = {tipoStatus: status}
     }
 }

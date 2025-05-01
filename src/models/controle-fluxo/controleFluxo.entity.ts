@@ -1,5 +1,6 @@
 import { Cliente } from "src/models/clientes/clientes.entity";
 import { EntidadeAuditavel } from "src/utils/EntidadeAuditavel";
+import { tipoFluxo } from "src/utils/tipoFluxo";
 import { Column, Entity, ManyToOne, OneToMany } from "typeorm";
 
 @Entity("controle_fluxo")
@@ -8,5 +9,5 @@ export class ControleFluxo extends EntidadeAuditavel{
     cliente: Cliente;
 
     @Column({type: 'enum', enum: ["Inicio", "Cardapio", "Pedido", "FinalizarPedido"]})
-    tipoFluxo: string;
+    tipoFluxo: tipoFluxo;
 }
