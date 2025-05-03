@@ -8,7 +8,7 @@ import { MensagemModule } from './models/mensagem/mensagem.module';
 import { PedidoItemModule } from './models/pedido-item/pedidoItem.module';
 import { RegiaoEntregaModule } from './models/regiao-entrega/regiaoEntrega.module';
 import { ControleFluxoModule } from './models/controle-fluxo/controleFluxo.module';
-import { WppModule } from './wpp/wpp.module';
+import { WhatsappModule } from './Whatsapp/WhatsappModule';
 
 @Module({
   imports: [
@@ -31,7 +31,7 @@ import { WppModule } from './wpp/wpp.module';
     PedidoItemModule,
     RegiaoEntregaModule,
     ControleFluxoModule,
-    WppModule
+    WhatsappModule
   ],
 })
 export class AppModule {}
