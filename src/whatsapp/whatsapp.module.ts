@@ -1,7 +1,7 @@
 import { Module } from '@nestjs/common';
-import { WhatsappService } from './Whatsapp.service';
+import { WhatsappService } from './whatsapp.service';
 import { AppService } from 'src/app.service';
-import { SharedServices } from 'src/common/modules/shared_services.module';
+import { SharedServices } from 'src/shared/shared_services.module';
 
 @Module({
   imports: [SharedServices],

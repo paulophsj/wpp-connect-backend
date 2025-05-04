@@ -1,4 +1,4 @@
-import { TipoStatus } from "./TipoStatus.interface";
+import { TipoStatus } from "./tipoStatus.interface";
 
 export interface TipoStatusCliente {
     [key: string]: TipoStatus

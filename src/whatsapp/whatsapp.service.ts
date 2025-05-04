@@ -1,12 +1,12 @@
 import { Injectable } from '@nestjs/common';
 import { create, Whatsapp } from '@wppconnect-team/wppconnect';
-import { ClienteFluxoService } from 'src/FluxoCliente/services/ClienteFluxo.service';
+import { ClienteFluxoService } from 'src/fluxo_cliente/services/clienteFluxo.service';
 
 @Injectable()
 export class WhatsappService {
   private WhatsappCliente: Whatsapp
   constructor(
-    private ClienteFluxo: ClienteFluxoService
+    private clienteFluxo: ClienteFluxoService
   ) {}
   async createConnection(): Promise<void> {
     this.WhatsappCliente = await create({
@@ -25,7 +25,7 @@ export class WhatsappService {
   private async startClientChat(cliente: Whatsapp){
     cliente.onMessage(async (message) => {
         if(!message.isGroupMsg){
-            this.ClienteFluxo.startChat({Cliente: message, Whatsapp: cliente})
+            this.clienteFluxo.startChat({Cliente: message, Whatsapp: cliente})
         }
     })
   }

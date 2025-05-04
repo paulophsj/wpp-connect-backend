@@ -1,14 +1,14 @@
 import { Injectable } from "@nestjs/common";
 import { Message } from "@wppconnect-team/wppconnect";
-import { TipoStatus } from "src/common/interfaces/TipoStatus.interface";
-import { TipoStatusCliente } from "src/common/interfaces/TipoStatusCliente.interface";
+import { TipoStatus } from "src/common/interfaces/tipoStatus.interface";
+import { TipoStatusCliente } from "src/common/interfaces/tipoStatusCliente.interface";
 import { ControleFluxoService } from "src/models/controle-fluxo/controleFluxo.service";
 import { TipoFluxo } from "src/common/utils/TipoFluxo.util";
 
 @Injectable()
 export class ClienteStatusService {
     private cliente: TipoStatusCliente = {}
-    public MensagemEnviada: Map<string, boolean> = new Map()
+    public mensagemEnviada: Map<string, boolean> = new Map()
 
     constructor(
         private controleFluxoService: ControleFluxoService
@@ -27,10 +27,10 @@ export class ClienteStatusService {
         return this.cliente[cliente.from] = {tipoStatus: status}
     }
     async mensagemFoiEnviada(numeroCliente: string): Promise<boolean> {
-        return this.MensagemEnviada.get(numeroCliente) === true;
+        return this.mensagemEnviada.get(numeroCliente) === true;
     }  
     async marcarMensagemComoEnviada(numeroCliente: string) {
-        this.MensagemEnviada.set(numeroCliente, true);
+        this.mensagemEnviada.set(numeroCliente, true);
     }
       
 }

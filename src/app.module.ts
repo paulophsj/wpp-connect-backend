@@ -1,7 +1,7 @@
 import { Module } from '@nestjs/common';
 import { ConfigModule } from '@nestjs/config';
 import { TypeOrmModule } from '@nestjs/typeorm';
-import { SharedModules } from './common/modules/shared_modules.module';
+import { SharedModules } from './shared/shared_modules.module';
 
 @Module({
   imports: [

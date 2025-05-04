@@ -1,5 +1,5 @@
 import { Injectable, OnModuleInit } from '@nestjs/common';
-import { WhatsappService } from './Whatsapp/Whatsapp.service';
+import { WhatsappService } from './whatsapp/whatsapp.service';
 
 @Injectable()
 export class AppService implements OnModuleInit{
