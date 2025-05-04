@@ -8,6 +8,7 @@ import { TipoFluxo } from "src/common/utils/TipoFluxo.util";
 @Injectable()
 export class ClienteStatusService {
     private cliente: TipoStatusCliente = {}
+    public MensagemEnviada: Map<string, boolean> = new Map()
 
     constructor(
         private controleFluxoService: ControleFluxoService
@@ -25,4 +26,11 @@ export class ClienteStatusService {
         await this.controleFluxoService.update(cliente, status)
         return this.cliente[cliente.from] = {tipoStatus: status}
     }
+    async mensagemFoiEnviada(numeroCliente: string): Promise<boolean> {
+        return this.MensagemEnviada.get(numeroCliente) === true;
+    }  
+    async marcarMensagemComoEnviada(numeroCliente: string) {
+        this.MensagemEnviada.set(numeroCliente, true);
+    }
+      
 }

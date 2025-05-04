@@ -1,16 +1,13 @@
 import { Module } from '@nestjs/common';
-import { TypeOrmModule } from '@nestjs/typeorm';
-import { Cliente } from 'src/models/clientes/clientes.entity';
-import { ControleFluxo } from 'src/models/controle-fluxo/controleFluxo.entity';
-import { Mensagem } from 'src/models/mensagem/mensagem.entity';
 import { WhatsappService } from './Whatsapp.service';
 import { AppService } from 'src/app.service';
+import { SharedServices } from 'src/common/modules/shared_services.module';
 
 @Module({
-  imports: [TypeOrmModule.forFeature([])],
+  imports: [SharedServices],
   providers: [
-    WhatsappService, AppService
+    AppService,
+    WhatsappService,
   ],
-  controllers: [],
 })
 export class WhatsappModule {}

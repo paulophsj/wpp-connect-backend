@@ -1,14 +1,7 @@
 import { Module } from '@nestjs/common';
 import { ConfigModule } from '@nestjs/config';
 import { TypeOrmModule } from '@nestjs/typeorm';
-import { ClienteModule } from './models/clientes/clientes.module';
-import { PedidoModule } from './models/pedido/pedido.module';
-import { CardapioModule } from './models/cardapio/cardapio.module';
-import { MensagemModule } from './models/mensagem/mensagem.module';
-import { PedidoItemModule } from './models/pedido-item/pedidoItem.module';
-import { RegiaoEntregaModule } from './models/regiao-entrega/regiaoEntrega.module';
-import { ControleFluxoModule } from './models/controle-fluxo/controleFluxo.module';
-import { WhatsappModule } from './Whatsapp/Whatsapp.module';
+import { SharedModules } from './common/modules/shared_modules.module';
 
 @Module({
   imports: [
@@ -24,14 +17,7 @@ import { WhatsappModule } from './Whatsapp/Whatsapp.module';
       entities: [__dirname + '/**/*.entity{.ts}'],
       autoLoadEntities: true,
     }),
-    CardapioModule,
-    ClienteModule,
-    MensagemModule,
-    PedidoModule,
-    PedidoItemModule,
-    RegiaoEntregaModule,
-    ControleFluxoModule,
-    WhatsappModule
+    SharedModules
   ],
 })
 export class AppModule {}
