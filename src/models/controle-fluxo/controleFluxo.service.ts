@@ -2,7 +2,7 @@ import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { ControleFluxo } from './controleFluxo.entity';
 import { Repository } from 'typeorm';
-import { TipoFluxo } from 'src/common/utils/TipoFluxo.util';
+import { TipoFluxo } from 'src/common/utils/tipoFluxo.util';
 import { Message } from '@wppconnect-team/wppconnect';
 import { ClientesService } from '../clientes/clientes.service';
 
@@ -14,6 +14,8 @@ export class ControleFluxoService {
 
         private clienteService: ClientesService,
     ) { }
+
+    
     async getFluxo(cliente: Message): Promise<ControleFluxo> {
         const hasControleFluxo = await this.controleFluxoRepository.findOne({
             where: { cliente: { telefone: cliente.from } },

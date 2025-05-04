@@ -1,5 +1,5 @@
 import { Module } from "@nestjs/common";
-import { ClienteFluxoModule } from "src/fluxo_cliente/clienteFluxo.module";
+
 import { CardapioModule } from "src/models/cardapio/cardapio.module";
 import { ClienteModule } from "src/models/clientes/clientes.module";
 import { ControleFluxoModule } from "src/models/controle-fluxo/controleFluxo.module";
@@ -8,6 +8,7 @@ import { PedidoItemModule } from "src/models/pedido-item/pedidoItem.module";
 import { PedidoModule } from "src/models/pedido/pedido.module";
 import { RegiaoEntregaModule } from "src/models/regiao-entrega/regiaoEntrega.module";
 import { WhatsappModule } from "src/whatsapp/whatsapp.module";
+import { ClienteFluxoModule } from "./shared_fluxos.module";
 
 @Module({
     imports: [

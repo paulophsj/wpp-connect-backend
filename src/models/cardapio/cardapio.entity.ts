@@ -1,4 +1,4 @@
-import { EntidadeAuditavel } from "src/common/utils/EntidadeAuditavel.util";
+import { EntidadeAuditavel } from "src/models/EntidadeAuditavel";
 import { Column, Entity } from "typeorm";
 
 @Entity("cardapio")

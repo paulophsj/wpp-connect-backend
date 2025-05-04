@@ -1,23 +1,25 @@
 import { Injectable } from "@nestjs/common";
-import { TipoFluxo } from "src/common/utils/TipoFluxo.util";
-import { ClienteMensagensService } from "./clienteMensagens.service";
+import { TipoFluxo } from "src/common/utils/tipoFluxo.util";
+import { FluxoInicioService } from "../inicio/fluxoInicio.service";
 import { WhatsappUser } from "src/common/interfaces/whatsappUser.interface";
 import { ClienteStatusService } from "./clienteStatus.service";
+import { Typing } from "src/common/decorators/Typing.decorator";
 
 
 @Injectable()
 export class ClienteFluxoService {
     constructor(
         private clienteStatusService: ClienteStatusService,
-        private fluxoInicio: ClienteMensagensService
+        private fluxoInicio: FluxoInicioService
     ) { }
 
+    @Typing()
     async startChat(WhatsappUser: WhatsappUser) {
         const statusCliente = await this.clienteStatusService.getStatusCliente(WhatsappUser.Cliente)
-        console.log(statusCliente.tipoStatus)
+        console.log(statusCliente, WhatsappUser.Cliente.from)
         switch (statusCliente.tipoStatus) {
             case TipoFluxo.INICIO:
-                this.fluxoInicio.teste(WhatsappUser)
+                return this.fluxoInicio.iniciarFluxo(WhatsappUser)
         }
     }
 }

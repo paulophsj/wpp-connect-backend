@@ -1,12 +1,12 @@
 import { Module } from "@nestjs/common";
 import { SharedServices } from "src/shared/shared_services.module";
-import { ClienteMensagensService } from "./services/clienteMensagens.service";
+import { FluxoInicioService } from "src/fluxo_cliente/inicio/fluxoInicio.service"; 
 
 @Module({
   imports: [SharedServices],
   providers: [
-    ClienteMensagensService
+    FluxoInicioService
   ],
-  exports: [ClienteMensagensService]
+  exports: [FluxoInicioService]
 })
 export class ClienteFluxoModule {}

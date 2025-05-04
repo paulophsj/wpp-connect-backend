@@ -3,12 +3,12 @@ import { Message } from "@wppconnect-team/wppconnect";
 import { TipoStatus } from "src/common/interfaces/tipoStatus.interface";
 import { TipoStatusCliente } from "src/common/interfaces/tipoStatusCliente.interface";
 import { ControleFluxoService } from "src/models/controle-fluxo/controleFluxo.service";
-import { TipoFluxo } from "src/common/utils/TipoFluxo.util";
+import { TipoFluxo } from "src/common/utils/tipoFluxo.util";
 
 @Injectable()
 export class ClienteStatusService {
     private cliente: TipoStatusCliente = {}
-    public mensagemEnviada: Map<string, boolean> = new Map()
+    private mensagemEnviada: Map<string, boolean> = new Map()
 
     constructor(
         private controleFluxoService: ControleFluxoService
