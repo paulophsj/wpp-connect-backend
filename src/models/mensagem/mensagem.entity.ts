@@ -1,5 +1,5 @@
 import { Cliente } from "src/models/clientes/clientes.entity";
-import { EntidadeAuditavel } from "src/utils/EntidadeAuditavel";
+import { EntidadeAuditavel } from "src/common/utils/EntidadeAuditavel.util";
 import { Column, CreateDateColumn, Entity, ManyToOne } from "typeorm";
 
 @Entity("mensagem")

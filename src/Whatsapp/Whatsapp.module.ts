@@ -3,7 +3,7 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import { Cliente } from 'src/models/clientes/clientes.entity';
 import { ControleFluxo } from 'src/models/controle-fluxo/controleFluxo.entity';
 import { Mensagem } from 'src/models/mensagem/mensagem.entity';
-import { WhatsappService } from './WhatsappService';
+import { WhatsappService } from './Whatsapp.service';
 import { AppService } from 'src/app.service';
 
 @Module({

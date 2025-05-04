@@ -3,9 +3,6 @@ import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { Cliente } from './clientes.entity';
 import { Message } from '@wppconnect-team/wppconnect';
-import { ControleFluxoService } from '../controle-fluxo/controleFluxo.service';
-import { tipoFluxo } from 'src/utils/tipoFluxo';
-import { ControleFluxo } from '../controle-fluxo/controleFluxo.entity';
 
 @Injectable()
 export class ClientesService {

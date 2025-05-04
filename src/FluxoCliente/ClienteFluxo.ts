@@ -1,12 +1,12 @@
 import { Injectable } from "@nestjs/common";
 import { Message } from "@wppconnect-team/wppconnect";
-import { clienteStatusService } from "./clienteStatusService";
 import { ClientesService } from "src/models/clientes/clientes.service";
+import { ClienteStatusService } from "./ClienteStatus.service";
 
 @Injectable()
-export class fluxoCliente {
+export class FluxoCliente {
     constructor(
-        private clienteStatusService: clienteStatusService,
+        private clienteStatusService: ClienteStatusService,
         private clienteService: ClientesService
     ){}
 

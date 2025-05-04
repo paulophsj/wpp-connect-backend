@@ -2,8 +2,7 @@ import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { ControleFluxo } from './controleFluxo.entity';
 import { Repository } from 'typeorm';
-import { Cliente } from 'src/models/clientes/clientes.entity';
-import { tipoFluxo } from 'src/utils/tipoFluxo';
+import { TipoFluxo } from 'src/common/utils/TipoFluxo.util';
 import { Message } from '@wppconnect-team/wppconnect';
 import { ClientesService } from '../clientes/clientes.service';
 
@@ -21,11 +20,11 @@ export class ControleFluxoService {
             relations: ['cliente'],
         });
         if (!hasControleFluxo) {
-            return await this.save(cliente, tipoFluxo.INICIO);
+            return await this.save(cliente, TipoFluxo.INICIO);
         }
         return hasControleFluxo;
     }
-    async save(cliente: Message, tipoFluxo: tipoFluxo): Promise<ControleFluxo> {
+    async save(cliente: Message, tipoFluxo: TipoFluxo): Promise<ControleFluxo> {
         let hasCliente = await this.clienteService.findOne(cliente)
         if (!hasCliente) {
             hasCliente = await this.clienteService.save(cliente);
@@ -36,7 +35,7 @@ export class ControleFluxoService {
         });
         return await this.controleFluxoRepository.save(novoFluxo);
     }
-    async update(cliente: Message,novoTipoFluxo: tipoFluxo): Promise<ControleFluxo> {
+    async update(cliente: Message,novoTipoFluxo: TipoFluxo): Promise<ControleFluxo> {
         const fluxo = await this.getFluxo(cliente);
         fluxo.tipoFluxo = novoTipoFluxo;
         return await this.controleFluxoRepository.save(fluxo);

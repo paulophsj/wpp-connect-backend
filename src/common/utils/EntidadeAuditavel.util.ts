@@ -1,6 +1,6 @@
 import { CreateDateColumn, PrimaryGeneratedColumn, UpdateDateColumn } from "typeorm";
 
-export abstract class EntidadeAuditavel {
+export class EntidadeAuditavel {
     @PrimaryGeneratedColumn()
     id: number;
     @CreateDateColumn()

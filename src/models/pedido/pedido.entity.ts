@@ -1,7 +1,7 @@
 import { Entity, Column, ManyToOne, OneToMany, CreateDateColumn } from 'typeorm';
 import { Cliente } from 'src/models/clientes/clientes.entity'; 
 import { PedidoItem } from 'src/models/pedido-item/pedidoItem.entity';
-import { EntidadeAuditavel } from 'src/utils/EntidadeAuditavel';
+import { EntidadeAuditavel } from 'src/common/utils/EntidadeAuditavel.util';
 
 @Entity('pedidos')
 export class Pedido extends EntidadeAuditavel{

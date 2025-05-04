@@ -1,7 +1,7 @@
 import { ControleFluxo } from "src/models/controle-fluxo/controleFluxo.entity";
 import { Mensagem } from "src/models/mensagem/mensagem.entity";
 import { Pedido } from "src/models/pedido/pedido.entity";
-import { EntidadeAuditavel } from "src/utils/EntidadeAuditavel";
+import { EntidadeAuditavel } from "src/common/utils/EntidadeAuditavel.util";
 import { Column, Entity, ManyToOne, OneToMany } from "typeorm";
 
 @Entity('clientes')
