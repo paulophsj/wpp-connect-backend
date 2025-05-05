@@ -2,8 +2,8 @@ import { Injectable, NotFoundException } from "@nestjs/common";
 import { InjectRepository } from "@nestjs/typeorm";
 import { Repository } from "typeorm";
 import { Mensagem } from "./mensagem.entity";
-import { Cliente } from "src/models/clientes/clientes.entity";
-import { ClientesService } from "src/models/clientes/clientes.service";
+import { ClientesService } from "../clientes/clientes.service";
+import { Message } from "@wppconnect-team/wppconnect";
 
 @Injectable()
 export class MensagemService {
@@ -11,17 +11,14 @@ export class MensagemService {
         @InjectRepository(Mensagem)
         private mensagemRepository: Repository<Mensagem>,
         
-        @InjectRepository(Cliente)
-        private clienteRepository: Repository<Cliente>
+        private clienteService: ClientesService
     ){}
-    async save(clienteId: number, mensagem: string): Promise<Mensagem>{
-        const cliente = await this.clienteRepository.findOne({where: {id: clienteId}})
-        if(!cliente){
-            throw new NotFoundException('Cliente não encontrado.')
-        }
+    public async save(cliente: Message, mensagem: string): Promise<Mensagem>{
+        const findClient = await this.clienteService.findOne(cliente)
+
         const newMessage = this.mensagemRepository.create({
-            cliente,
-            mensagem
+            mensagem,
+            cliente: findClient
         })
         return await this.mensagemRepository.save(newMessage)
     }

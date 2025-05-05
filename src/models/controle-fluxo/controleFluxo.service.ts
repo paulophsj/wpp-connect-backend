@@ -27,13 +27,10 @@ export class ControleFluxoService {
         return hasControleFluxo;
     }
     async save(cliente: Message, tipoFluxo: TipoFluxo): Promise<ControleFluxo> {
-        let hasCliente = await this.clienteService.findOne(cliente)
-        if (!hasCliente) {
-            hasCliente = await this.clienteService.save(cliente);
-        }
+        const findClient = await this.clienteService.findOne(cliente)
         const novoFluxo = this.controleFluxoRepository.create({
             tipoFluxo,
-            cliente: hasCliente,
+            cliente: findClient,
         });
         return await this.controleFluxoRepository.save(novoFluxo);
     }

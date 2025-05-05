@@ -15,16 +15,20 @@ export class FluxoInicioService {
 
         if(!await this.clienteStatusService.mensagemFoiEnviada(Cliente.from)){
             await Whatsapp.sendText(Cliente.from, `Olá, ${Cliente.sender.pushname}! Seja bem-vindo(a) à NP Burger – Hambúrguer Artesanal de Verdade!`)
+            await Whatsapp.sendText(Cliente.from, "Como podemos te ajudar hoje? Escolha uma das opções abaixo:")
+            await Whatsapp.sendText(Cliente.from, "1️⃣ Fazer um pedido\n2️⃣ Ver o cardápio completo\n3️⃣ Falar com um atendente\n4️⃣ Avaliar nosso atendimento\n5️⃣ Informações sobre entrega")
             await this.clienteStatusService.marcarMensagemComoEnviada(Cliente.from)
+            return
         }
         if(await this.clienteStatusService.mensagemFoiEnviada(Cliente.from)){
             switch (Cliente.body?.trim()){
                 case "2":
                     return this.clienteStatusService.setStatusCliente(Cliente, TipoFluxo.CARDAPIO)
                 default:
-                    await Whatsapp.sendText(Cliente.from, "Como podemos te ajudar hoje? Escolha uma das opções abaixo:")
-                    return await Whatsapp.sendText(Cliente.from, "1️⃣ Fazer um pedido\n2️⃣ Ver o cardápio completo\n3️⃣ Falar com um atendente\n4️⃣ Avaliar nosso atendimento\n5️⃣ Informações sobre entrega")
-            }
+                    await Whatsapp.sendText(Cliente.from, "Poxa... Não consegui entender sua resposta.\nPor favor, selecione uma opção válida: ")
+                    await Whatsapp.sendText(Cliente.from, "1️⃣ Fazer um pedido\n2️⃣ Ver o cardápio completo\n3️⃣ Falar com um atendente\n4️⃣ Avaliar nosso atendimento\n5️⃣ Informações sobre entrega")
+                    return
+                }
         }
     }
 }
