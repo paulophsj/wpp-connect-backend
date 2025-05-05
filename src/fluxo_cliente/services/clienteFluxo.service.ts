@@ -19,12 +19,16 @@ export class ClienteFluxoService {
     async startChat(WhatsappUser: WhatsappUser) {
         const statusCliente = await this.clienteStatusService.getStatusCliente(WhatsappUser.Cliente)
 
+        return console.log(WhatsappUser.Cliente)
+
         //Salva a mensagem recebida do cliente
         await this.mensagemService.save(WhatsappUser.Cliente, WhatsappUser.Cliente.body?.trim() as string)
         
         switch (statusCliente.tipoStatus) {
             case TipoFluxo.INICIO:
                 return this.fluxoInicio.iniciarFluxo(WhatsappUser)
+            case TipoFluxo.CARDAPIO:
+                return 
         }
     }
 }

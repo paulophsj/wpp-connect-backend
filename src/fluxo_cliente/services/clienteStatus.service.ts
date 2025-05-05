@@ -29,8 +29,8 @@ export class ClienteStatusService {
     async mensagemFoiEnviada(numeroCliente: string): Promise<boolean> {
         return this.mensagemEnviada.get(numeroCliente) === true;
     }  
-    async marcarMensagemComoEnviada(numeroCliente: string) {
-        this.mensagemEnviada.set(numeroCliente, true);
+    async marcarMensagem(numeroCliente: string, foiEnviada: boolean) {
+        this.mensagemEnviada.set(numeroCliente, foiEnviada);
     }
       
 }

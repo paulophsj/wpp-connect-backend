@@ -9,7 +9,6 @@ import { ControleFluxoService } from 'src/models/controle-fluxo/controleFluxo.se
 import { ClientesService } from 'src/models/clientes/clientes.service';
 import { ClienteStatusService } from 'src/fluxo_cliente/services/clienteStatus.service';
 import { ClienteFluxoService } from 'src/fluxo_cliente/services/clienteFluxo.service';
-import { FluxoInicioService } from 'src/fluxo_cliente/inicio/fluxoInicio.service';
 import { MensagemService } from 'src/models/mensagem/mensagem.service';
 
 @Module({
@@ -19,8 +18,7 @@ import { MensagemService } from 'src/models/mensagem/mensagem.service';
     ClientesService,
     ClienteStatusService,
     ClienteFluxoService,
-    FluxoInicioService,
-    MensagemService
+    MensagemService,
   ],
   exports: [
     TypeOrmModule,
@@ -28,7 +26,6 @@ import { MensagemService } from 'src/models/mensagem/mensagem.service';
     ClientesService,
     ClienteStatusService,
     ClienteFluxoService,
-    FluxoInicioService,
     MensagemService
   ],
 })
