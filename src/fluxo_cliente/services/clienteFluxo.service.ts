@@ -5,21 +5,20 @@ import { WhatsappUser } from "src/common/interfaces/whatsappUser.interface";
 import { ClienteStatusService } from "./clienteStatus.service";
 import { Typing } from "src/common/decorators/Typing.decorator";
 import { MensagemService } from "src/models/mensagem/mensagem.service";
-
+import { FluxoCardapioService } from "../cardapio/fluxoCardapio.service";
 
 @Injectable()
 export class ClienteFluxoService {
     constructor(
         private clienteStatusService: ClienteStatusService,
         private mensagemService: MensagemService,
-        private fluxoInicio: FluxoInicioService
+        private fluxoInicio: FluxoInicioService,
+        private fluxoCardapio: FluxoCardapioService
     ) { }
 
     @Typing()
     async startChat(WhatsappUser: WhatsappUser) {
         const statusCliente = await this.clienteStatusService.getStatusCliente(WhatsappUser.Cliente)
-
-        return console.log(WhatsappUser.Cliente)
 
         //Salva a mensagem recebida do cliente
         await this.mensagemService.save(WhatsappUser.Cliente, WhatsappUser.Cliente.body?.trim() as string)
@@ -28,7 +27,7 @@ export class ClienteFluxoService {
             case TipoFluxo.INICIO:
                 return this.fluxoInicio.iniciarFluxo(WhatsappUser)
             case TipoFluxo.CARDAPIO:
-                return 
+                return this.fluxoCardapio.iniciarFluxo(WhatsappUser)
         }
     }
 }

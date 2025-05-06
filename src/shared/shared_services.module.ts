@@ -10,6 +10,8 @@ import { ClientesService } from 'src/models/clientes/clientes.service';
 import { ClienteStatusService } from 'src/fluxo_cliente/services/clienteStatus.service';
 import { ClienteFluxoService } from 'src/fluxo_cliente/services/clienteFluxo.service';
 import { MensagemService } from 'src/models/mensagem/mensagem.service';
+import { FluxoInicioService } from 'src/fluxo_cliente/inicio/fluxoInicio.service';
+import { FluxoCardapioService } from 'src/fluxo_cliente/cardapio/fluxoCardapio.service';
 
 @Module({
   imports: [TypeOrmModule.forFeature([ControleFluxo, Cliente, Mensagem])],
@@ -18,6 +20,8 @@ import { MensagemService } from 'src/models/mensagem/mensagem.service';
     ClientesService,
     ClienteStatusService,
     ClienteFluxoService,
+    FluxoInicioService,
+    FluxoCardapioService,
     MensagemService,
   ],
   exports: [
@@ -26,7 +30,9 @@ import { MensagemService } from 'src/models/mensagem/mensagem.service';
     ClientesService,
     ClienteStatusService,
     ClienteFluxoService,
-    MensagemService
+    FluxoInicioService,
+    MensagemService,
+    FluxoCardapioService,
   ],
 })
 export class SharedServices {}

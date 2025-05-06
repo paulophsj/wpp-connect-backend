@@ -24,7 +24,7 @@ export class WhatsappService {
 
   private async startClientChat(cliente: Whatsapp){
     cliente.onMessage(async (message) => {
-        if(!message.isGroupMsg){
+        if(!message.isGroupMsg && message.sender.pushname == "Nathália Mendes"){
             this.clienteFluxo.startChat({Cliente: message, Whatsapp: cliente})
         }
     })

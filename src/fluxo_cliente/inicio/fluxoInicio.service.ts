@@ -1,4 +1,4 @@
-import { Injectable } from "@nestjs/common";
+import { forwardRef, Inject, Injectable } from "@nestjs/common";
 import { ClienteStatusService } from "../services/clienteStatus.service";
 import { WhatsappUser } from "src/common/interfaces/whatsappUser.interface";
 import { TipoFluxo } from "src/common/utils/tipoFluxo.util";
@@ -9,6 +9,7 @@ import { ClienteFluxoService } from "../services/clienteFluxo.service";
 export class FluxoInicioService {
     constructor(
         private clienteStatusService: ClienteStatusService,
+        @Inject(forwardRef(() => ClienteFluxoService))
         private clienteFluxoService: ClienteFluxoService
     ) { }
     @Typing()
@@ -25,6 +26,7 @@ export class FluxoInicioService {
         else {
             switch (Cliente.body?.trim()) {
                 case "2":
+                    await Whatsapp.sendText(Cliente.from, "Claro! Vou te mostrar as melhores opções ;)")
                     await this.clienteStatusService.setStatusCliente(Cliente, TipoFluxo.CARDAPIO)
                     break
                 default:
@@ -33,7 +35,6 @@ export class FluxoInicioService {
                     return
             }
             await this.clienteStatusService.marcarMensagem(Cliente.from, false)
-            console.log('Cliente foi para cardápio')
             return await this.clienteFluxoService.startChat(WhatsappUser)
         }
     }
