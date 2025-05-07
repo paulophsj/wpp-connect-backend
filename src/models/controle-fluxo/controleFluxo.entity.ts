@@ -8,6 +8,6 @@ export class ControleFluxo extends EntidadeAuditavel{
     @ManyToOne(() => Cliente, cliente => cliente.fluxo)
     cliente: Cliente;
 
-    @Column({type: 'enum', enum: ["Inicio", "Cardapio", "Pedido", "FinalizarPedido"]})
+    @Column({type: 'enum', enum: TipoFluxo})
     tipoFluxo: TipoFluxo;
 }

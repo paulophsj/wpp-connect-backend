@@ -12,9 +12,11 @@ import { ClienteFluxoService } from 'src/fluxo_cliente/services/clienteFluxo.ser
 import { MensagemService } from 'src/models/mensagem/mensagem.service';
 import { FluxoInicioService } from 'src/fluxo_cliente/inicio/fluxoInicio.service';
 import { FluxoCardapioService } from 'src/fluxo_cliente/cardapio/fluxoCardapio.service';
+import { MensagemFluxoService } from 'src/models/mensagem-fluxo/mensagemFluxo.service';
+import { MensagemFluxo } from 'src/models/mensagem-fluxo/mensagemFluxo.entity';
 
 @Module({
-  imports: [TypeOrmModule.forFeature([ControleFluxo, Cliente, Mensagem])],
+  imports: [TypeOrmModule.forFeature([ControleFluxo, Cliente, Mensagem, MensagemFluxo])],
   providers: [
     ControleFluxoService,
     ClientesService,
@@ -22,6 +24,7 @@ import { FluxoCardapioService } from 'src/fluxo_cliente/cardapio/fluxoCardapio.s
     ClienteFluxoService,
     FluxoInicioService,
     FluxoCardapioService,
+    MensagemFluxoService,
     MensagemService,
   ],
   exports: [
@@ -32,6 +35,7 @@ import { FluxoCardapioService } from 'src/fluxo_cliente/cardapio/fluxoCardapio.s
     ClienteFluxoService,
     FluxoInicioService,
     MensagemService,
+    MensagemFluxoService,
     FluxoCardapioService,
   ],
 })

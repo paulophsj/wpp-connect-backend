@@ -9,6 +9,7 @@ import { PedidoModule } from "src/models/pedido/pedido.module";
 import { RegiaoEntregaModule } from "src/models/regiao-entrega/regiaoEntrega.module";
 import { WhatsappModule } from "src/whatsapp/whatsapp.module";
 import { ClienteFluxoModule } from "./shared_fluxos.module";
+import { MensagemFluxoModule } from "src/models/mensagem-fluxo/mensagemFluxo.module";
 
 @Module({
     imports: [
@@ -20,6 +21,7 @@ import { ClienteFluxoModule } from "./shared_fluxos.module";
         RegiaoEntregaModule,
         ControleFluxoModule,
         ClienteFluxoModule,
+        MensagemFluxoModule,
         WhatsappModule,
     ],
     providers: [],
@@ -32,6 +34,7 @@ import { ClienteFluxoModule } from "./shared_fluxos.module";
         RegiaoEntregaModule,
         ControleFluxoModule,
         ClienteFluxoModule,
+        MensagemFluxoModule,
         WhatsappModule,
     ]
 })
