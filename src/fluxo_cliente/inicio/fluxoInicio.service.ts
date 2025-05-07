@@ -5,6 +5,7 @@ import { TipoFluxo } from "src/common/utils/tipoFluxo.util";
 import { Typing } from "src/common/decorators/Typing.decorator";
 import { ClienteFluxoService } from "../services/clienteFluxo.service";
 import { MensagemFluxoService } from "src/models/mensagem-fluxo/mensagemFluxo.service";
+import { MensagemFluxo } from "src/models/mensagem-fluxo/mensagemFluxo.entity";
 
 @Injectable()
 export class FluxoInicioService {
@@ -18,11 +19,12 @@ export class FluxoInicioService {
     @Typing()
     async iniciarFluxo(WhatsappUser: WhatsappUser) {
         const { Cliente, Whatsapp } = WhatsappUser
+        const todasMensagens: MensagemFluxo[] = await this.mensagemFluxoService.getAll()
 
         if (!await this.clienteStatusService.mensagemFoiEnviada(Cliente.from)) {
-            await Whatsapp.sendText(Cliente.from, `Olá, ${Cliente.sender.pushname}! Seja bem-vindo(a) à NP Burger – Hambúrguer Artesanal de Verdade!`)
-            await Whatsapp.sendText(Cliente.from, "Como podemos te ajudar hoje? Escolha uma das opções abaixo:")
-            await Whatsapp.sendText(Cliente.from, "1️⃣ Fazer um pedido\n2️⃣ Ver o cardápio completo\n3️⃣ Falar com um atendente\n4️⃣ Avaliar nosso atendimento\n5️⃣ Informações sobre entrega")
+            for(const mensagem of todasMensagens.filter(elemento => elemento.step == TipoFluxo.INICIO)){
+                await Whatsapp.sendText(Cliente.from, mensagem.mensagem.replace('{NOME_CLIENTE}', Cliente.sender.pushname?.split(" ")[0] as string))
+            }
             await this.clienteStatusService.marcarMensagem(Cliente.from, true)
             return
         }
@@ -34,7 +36,7 @@ export class FluxoInicioService {
                     break
                 default:
                     await Whatsapp.sendText(Cliente.from, "Poxa... Não consegui entender sua resposta.\nPor favor, selecione uma opção válida: ")
-                    await Whatsapp.sendText(Cliente.from, "1️⃣ Fazer um pedido\n2️⃣ Ver o cardápio completo\n3️⃣ Falar com um atendente\n4️⃣ Avaliar nosso atendimento\n5️⃣ Informações sobre entrega")
+                    await Whatsapp.sendText(Cliente.from, todasMensagens.find(elemento => elemento.isOption == true && elemento.step == TipoFluxo.INICIO)?.mensagem as string)
                     return
             }
             await this.clienteStatusService.marcarMensagem(Cliente.from, false)
