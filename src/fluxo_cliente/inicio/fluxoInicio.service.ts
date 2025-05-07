@@ -4,13 +4,16 @@ import { WhatsappUser } from "src/common/interfaces/whatsappUser.interface";
 import { TipoFluxo } from "src/common/utils/tipoFluxo.util";
 import { Typing } from "src/common/decorators/Typing.decorator";
 import { ClienteFluxoService } from "../services/clienteFluxo.service";
+import { MensagemFluxoService } from "src/models/mensagem-fluxo/mensagemFluxo.service";
 
 @Injectable()
 export class FluxoInicioService {
     constructor(
         private clienteStatusService: ClienteStatusService,
         @Inject(forwardRef(() => ClienteFluxoService))
-        private clienteFluxoService: ClienteFluxoService
+        private clienteFluxoService: ClienteFluxoService,
+
+        private mensagemFluxoService: MensagemFluxoService
     ) { }
     @Typing()
     async iniciarFluxo(WhatsappUser: WhatsappUser) {
